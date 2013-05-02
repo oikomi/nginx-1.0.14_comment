@@ -1,0 +1,4 @@
+---- ngx_open_listening_sockets Matches (3 in 3 files) ----
+Ngx_connection.c (src\core):ngx_open_listening_sockets(ngx_cycle_t *cycle)
+Ngx_connection.h (src\core):ngx_int_t ngx_open_listening_sockets(ngx_cycle_t *cycle);
+Ngx_cycle.c (src\core):    if (ngx_open_listening_sockets(cycle) != NGX_OK) {
