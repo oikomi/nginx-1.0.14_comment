@@ -1,4 +1,4 @@
-#define NGX_CONFIGURE ""
+#define NGX_CONFIGURE " --add-module=./mymodule/ngx_http_hello_module/"
 
 #ifndef NGX_HAVE_GCC_ATOMIC
 #define NGX_HAVE_GCC_ATOMIC  1

@@ -212,6 +212,8 @@ main(int argc, char *const *argv)
         return 1;
     }
 
+	printf("miaohong: start nginx\n");
+
     //获取参数和配置参数，比如命令是nginx -v 那么ngx_show_version就设置为1
     if (ngx_get_options(argc, argv) != NGX_OK) {
         return 1;
@@ -335,7 +337,7 @@ main(int argc, char *const *argv)
         ngx_modules[i]->index = ngx_max_module++;
     }
 
-	printf("miaohong : ngx_max_module : %d \n",ngx_max_module);
+	//printf("miaohong : ngx_max_module : %d \n",ngx_max_module);
 
     // 对ngx_cycle结构进行初始化,这里是nginx启动核心之处
     //ngx_cycle_t是一个重要的数据结构，它是一个很重要的容器，
@@ -414,11 +416,14 @@ main(int argc, char *const *argv)
     }
 
     ngx_use_stderr = 0;
+	printf("miaohong :coming\n");
 
     if (ngx_process == NGX_PROCESS_SINGLE) {
+		printf("miaohong : ngx_single_process_cycle\n");
         ngx_single_process_cycle(cycle);   //单进程
 
     } else {
+    	printf("miaohong : ngx_master_process_cycle\n");
         ngx_master_process_cycle(cycle);    //多进程，master进程进入这个，这个函数在不同操作系统有不同实现。
     }
 

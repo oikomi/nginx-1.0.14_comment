@@ -96,6 +96,9 @@ HTTP_INCS = -I src/http \
 	-I src/http/modules
 
 
+ADDON_DEPS = $(CORE_DEPS)  $(HTTP_DEPS)
+
+
 objs/nginx:	objs/src/core/nginx.o \
 	objs/src/core/ngx_log.o \
 	objs/src/core/ngx_palloc.o \
@@ -200,6 +203,7 @@ objs/nginx:	objs/src/core/nginx.o \
 	objs/src/http/modules/ngx_http_empty_gif_module.o \
 	objs/src/http/modules/ngx_http_browser_module.o \
 	objs/src/http/modules/ngx_http_upstream_ip_hash_module.o \
+	objs/addon/ngx_http_hello_module/ngx_http_hello_module.o \
 	objs/ngx_modules.o
 
 	$(LINK) -o objs/nginx \
@@ -307,6 +311,7 @@ objs/nginx:	objs/src/core/nginx.o \
 	objs/src/http/modules/ngx_http_empty_gif_module.o \
 	objs/src/http/modules/ngx_http_browser_module.o \
 	objs/src/http/modules/ngx_http_upstream_ip_hash_module.o \
+	objs/addon/ngx_http_hello_module/ngx_http_hello_module.o \
 	objs/ngx_modules.o \
 	-lpthread -lcrypt -lpcre -lcrypto -lcrypto -lz
 	
@@ -1045,6 +1050,13 @@ objs/src/http/modules/ngx_http_upstream_ip_hash_module.o:	$(CORE_DEPS) $(HTTP_DE
 	$(CC) -c -g $(CFLAGS) $(CORE_INCS) $(HTTP_INCS) \
 		-o objs/src/http/modules/ngx_http_upstream_ip_hash_module.o \
 		src/http/modules/ngx_http_upstream_ip_hash_module.c
+
+
+objs/addon/ngx_http_hello_module/ngx_http_hello_module.o:	$(ADDON_DEPS) \
+	./mymodule/ngx_http_hello_module//ngx_http_hello_module.c
+	$(CC) -c -g $(CFLAGS)  $(ALL_INCS) \
+		-o objs/addon/ngx_http_hello_module/ngx_http_hello_module.o \
+		./mymodule/ngx_http_hello_module//ngx_http_hello_module.c
 
 
 manpage:	objs/nginx.8

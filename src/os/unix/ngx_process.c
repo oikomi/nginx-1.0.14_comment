@@ -96,7 +96,9 @@ ngx_spawn_process(ngx_cycle_t *cycle, ngx_spawn_proc_pt proc, void *data,
         s = respawn;
 
     } else {
-        //遍历ngx_processess，从而找到空闲的slot，从而等会fork完毕后,将子进程信息放入全局进程信息表的相应的slot
+        //遍历ngx_processess，从而找到空闲的slot，
+        //从而等会fork完毕后,将子进程信息放入
+        //全局进程信息表的相应的slot
         for (s = 0; s < ngx_last_process; s++) {
             if (ngx_processes[s].pid == -1) {
                 break;
@@ -112,7 +114,9 @@ ngx_spawn_process(ngx_cycle_t *cycle, ngx_spawn_proc_pt proc, void *data,
         }
     }
 
-    //如果类型为NGX_PROCESS_DETACHED，则说明是热代码替换(热代码替换也是通过这个函数进行处理的)，因此不需要新建socketpair
+    //如果类型为NGX_PROCESS_DETACHED，
+    //则说明是热代码替换(热代码替换也是
+    //通过这个函数进行处理的)，因此不需要新建socketpair
     if (respawn != NGX_PROCESS_DETACHED) {
 
         /* Solaris 9 still has no AF_LOCAL */

@@ -218,7 +218,8 @@ ngx_process_events_and_timers(ngx_cycle_t *cycle)
 
 #endif
     }
-    //是否使用accept互斥体。accept mutex的作用就是避免惊群，同时实现负载均衡
+    //是否使用accept互斥体。
+    //accept mutex的作用就是避免惊群，同时实现负载均衡
     if (ngx_use_accept_mutex) {
         if (ngx_accept_disabled > 0) {  //大于0说明该进程接收的连接过多，放弃一次争抢accept mutex的机会
             ngx_accept_disabled--;

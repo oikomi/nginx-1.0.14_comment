@@ -1,4 +1,8 @@
----- ngx_open_listening_sockets Matches (3 in 3 files) ----
-Ngx_connection.c (src\core):ngx_open_listening_sockets(ngx_cycle_t *cycle)
-Ngx_connection.h (src\core):ngx_int_t ngx_open_listening_sockets(ngx_cycle_t *cycle);
-Ngx_cycle.c (src\core):    if (ngx_open_listening_sockets(cycle) != NGX_OK) {
+---- ngx_http_process_request_line Matches (7 in 1 files) ----
+Ngx_http_request.c (src\http):static void ngx_http_process_request_line(ngx_event_t *rev);
+Ngx_http_request.c (src\http):    rev->handler = ngx_http_process_request_line;
+Ngx_http_request.c (src\http):    rev->handler = ngx_http_process_request_line;
+Ngx_http_request.c (src\http):    ngx_http_process_request_line(rev);
+Ngx_http_request.c (src\http):        c->read->handler = ngx_http_process_request_line;
+Ngx_http_request.c (src\http):        ngx_http_process_request_line(c->read);
+Ngx_http_request.c (src\http):ngx_http_process_request_line(ngx_event_t *rev)

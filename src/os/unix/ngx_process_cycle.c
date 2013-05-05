@@ -809,11 +809,13 @@ ngx_worker_process_cycle(ngx_cycle_t *cycle, void *data)
 
     for ( ;; ) {
 
-        //ngx_exiting是当收到master的quit命令（SIGQUIT信号）后，设置为1,然后等待其他资源退出
+        //ngx_exiting是当收到master的quit命令（SIGQUIT信号）后，
+        //设置为1,然后等待其他资源退出
         if (ngx_exiting) {
 
             c = cycle->connections;
-            // worker进程退出前，先处理完每个connection上已经发生的事件
+            // worker进程退出前，先处理完每个connection上
+            //已经发生的事件
             for (i = 0; i < cycle->connection_n; i++) {
 
                 /* THREAD: lock */
