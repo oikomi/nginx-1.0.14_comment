@@ -218,6 +218,9 @@ ngx_process_events_and_timers(ngx_cycle_t *cycle)
 
 #endif
     }
+	/*ngx_use_accept_mutex变量代表是否使用accept互斥体 
+	默认是使用，accept_mutex off;指令关闭。 
+	accept mutex的作用就是避免惊群，同时实现负载均衡。 */
     //是否使用accept互斥体。
     //accept mutex的作用就是避免惊群，同时实现负载均衡
     if (ngx_use_accept_mutex) {
@@ -244,6 +247,9 @@ ngx_process_events_and_timers(ngx_cycle_t *cycle)
 
     delta = ngx_current_msec;
     //epoll开始wait事件
+    /*epoll开始wait事件了,ngx_process_events的
+    具体实现是对应到 epoll模块中的ngx_epoll_process_events函数。
+    单独分析epoll 模块的时候，再具体看看。 */
     (void) ngx_process_events(cycle, timer, flags);
 
     delta = ngx_current_msec - delta;

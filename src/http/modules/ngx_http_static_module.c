@@ -62,7 +62,12 @@ ngx_http_static_handler(ngx_http_request_t *r)
     if (!(r->method & (NGX_HTTP_GET|NGX_HTTP_HEAD|NGX_HTTP_POST))) {
         return NGX_HTTP_NOT_ALLOWED;
     }
-
+//检查请求的url的结尾字符是不是斜杠‘/’，
+//如果是说明请求的不是一个文件，给后续的
+//handler去处理，比如后续的ngx_http_autoindex_handler
+//（如果是请求的是一个目录下面，可以列出这个目录的文件），
+//或者是ngx_http_index_handler（如果请求的路径下面有个默认的
+//index文件，直接返回index文件的内容）。
     if (r->uri.data[r->uri.len - 1] == '/') {
         return NGX_DECLINED;
     }
