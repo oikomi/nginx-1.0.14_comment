@@ -267,7 +267,7 @@ ngx_http_static_init(ngx_conf_t *cf)
 
     cmcf = ngx_http_conf_get_module_main_conf(cf, ngx_http_core_module);
 
-    h = ngx_array_push(&cmcf->phases[NGX_HTTP_CONTENT_PHASE].handlers);
+    h = ngx_array_push(&cmcf->phases[NGX_HTTP_CONTENT_PHASE].handlers);//挂载这个handler到NGX_HTTP_CONTENT_PHASE处理阶段
     if (h == NULL) {
         return NGX_ERROR;
     }
