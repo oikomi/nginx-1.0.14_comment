@@ -324,7 +324,7 @@ ngx_epoll_init(ngx_cycle_t *cycle, ngx_msec_t timer)
 
     ngx_io = ngx_os_io;
 
-    ngx_event_actions = ngx_epoll_module_ctx.actions;
+    ngx_event_actions = ngx_epoll_module_ctx.actions;//初始化最重要的全局变量
 
 #if (NGX_HAVE_CLEAR_EVENT)
     ngx_event_flags = NGX_USE_CLEAR_EVENT  //epoll添加这个标志，主要为了实现边缘触发

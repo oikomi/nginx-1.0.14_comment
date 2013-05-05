@@ -226,7 +226,8 @@ typedef struct {
     in_addr_t  addr;
 } ngx_event_debug_t;
 
-
+//结构体包含的字段主要就是回调函数，
+//将各个I/O多路复用模型的功能接口进行统一
 typedef struct {
     ngx_int_t  (*add)(ngx_event_t *ev, ngx_int_t event, ngx_uint_t flags);
     ngx_int_t  (*del)(ngx_event_t *ev, ngx_int_t event, ngx_uint_t flags);
@@ -237,9 +238,9 @@ typedef struct {
     ngx_int_t  (*add_conn)(ngx_connection_t *c);
     ngx_int_t  (*del_conn)(ngx_connection_t *c, ngx_uint_t flags);
 
-    ngx_int_t  (*process_changes)(ngx_cycle_t *cycle, ngx_uint_t nowait);
+    ngx_int_t  (*process_changes)(ngx_cycle_t *cycle, ngx_uint_t nowait);//监控的事件发生变化，只有kqueue会用到这个接口
     ngx_int_t  (*process_events)(ngx_cycle_t *cycle, ngx_msec_t timer,
-                   ngx_uint_t flags);
+                   ngx_uint_t flags);//阻塞等待事件发生，对发生的事件进行逐个处理
 
     ngx_int_t  (*init)(ngx_cycle_t *cycle, ngx_msec_t timer);
     void       (*done)(ngx_cycle_t *cycle);

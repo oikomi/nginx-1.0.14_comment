@@ -41,7 +41,7 @@ sig_atomic_t          ngx_event_timer_alarm;
 static ngx_uint_t     ngx_event_max_module;
 
 ngx_uint_t            ngx_event_flags;
-ngx_event_actions_t   ngx_event_actions;
+ngx_event_actions_t   ngx_event_actions; //非常重要的一个全局变量
 
 
 static ngx_atomic_t   connection_counter = 1;
@@ -593,7 +593,9 @@ ngx_event_process_init(ngx_cycle_t *cycle)
     ccf = (ngx_core_conf_t *) ngx_get_conf(cycle->conf_ctx, ngx_core_module);
     ecf = ngx_event_get_conf(cycle->conf_ctx, ngx_event_core_module);
 
-    // 判断是否使用mutex锁，主要是为了控制负载均衡。ccf->master主要确定下是否是master-worker模式。单进程模式就不需要进行下面操作了。
+    // 判断是否使用mutex锁，主要是为了控制负载均衡。
+    //ccf->master主要确定下是否是master-worker模式。
+    //单进程模式就不需要进行下面操作了。
     if (ccf->master && ccf->worker_processes > 1 && ecf->accept_mutex) {
         //使用mutex控制进程的负载均衡
         ngx_use_accept_mutex = 1;

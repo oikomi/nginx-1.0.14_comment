@@ -1009,7 +1009,8 @@ ngx_worker_process_init(ngx_cycle_t *cycle, ngx_uint_t priority)
             //进程初始化, 调用每个模块的init_process,用它做模块开发的时候，使用得挺少的 
             //这里要特别看的是event模块:
             //nginx的event模块包含一个init_process,也就是ngx_event_process_init(ngx_event.c).
-            //这个函数就是nginx的驱动器，他初始化事件驱动器，连接池，定时器，以及挂在listen 句柄的回调函数
+            //这个函数就是nginx的驱动器，他初始化事件驱动器，连接池，
+            //定时器，以及挂在listen 句柄的回调函数
             if (ngx_modules[i]->init_process(cycle) == NGX_ERROR) {
                 /* fatal */
                 exit(2);

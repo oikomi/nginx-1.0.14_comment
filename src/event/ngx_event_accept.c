@@ -103,7 +103,8 @@ ngx_event_accept(ngx_event_t *ev)
 #if (NGX_STAT_STUB)
         (void) ngx_atomic_fetch_add(ngx_stat_accepted, 1);
 #endif
-        //accept到一个新的连接以后，就重新计算ngx_accept_disabled的值。它主要用来做负载均衡使用
+        //accept到一个新的连接以后，就重新计算ngx_accept_disabled的值。
+        //它主要用来做负载均衡使用
         ngx_accept_disabled = ngx_cycle->connection_n / 8
                               - ngx_cycle->free_connection_n;
 
@@ -289,7 +290,9 @@ ngx_event_accept(ngx_event_t *ev)
         log->data = NULL;
         log->handler = NULL;
 
-		//它将完成新连接的最后初始化工作，同时将accept到的新连接放入epoll中，挂在handler上的函数就是ngx_http_init_connection
+		//它将完成新连接的最后初始化工作，
+		//同时将accept到的新连接放入epoll中，
+		//挂在handler上的函数就是ngx_http_init_connection
         ls->handler(c);// 被初始化为 ngx_http_init_connection
 
         if (ngx_event_flags & NGX_USE_KQUEUE_EVENT) {
