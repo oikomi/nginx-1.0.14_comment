@@ -1,4 +1,9 @@
-#define NGX_CONFIGURE " --add-module=./mymodule/ngx_http_hello_module/"
+#define NGX_CONFIGURE " --with-debug"
+
+#ifndef NGX_DEBUG
+#define NGX_DEBUG  1
+#endif
+
 
 #ifndef NGX_HAVE_GCC_ATOMIC
 #define NGX_HAVE_GCC_ATOMIC  1

@@ -1,8 +1,4 @@
----- ngx_http_process_request_line Matches (7 in 1 files) ----
-Ngx_http_request.c (src\http):static void ngx_http_process_request_line(ngx_event_t *rev);
-Ngx_http_request.c (src\http):    rev->handler = ngx_http_process_request_line;
-Ngx_http_request.c (src\http):    rev->handler = ngx_http_process_request_line;
-Ngx_http_request.c (src\http):    ngx_http_process_request_line(rev);
-Ngx_http_request.c (src\http):        c->read->handler = ngx_http_process_request_line;
-Ngx_http_request.c (src\http):        ngx_http_process_request_line(c->read);
-Ngx_http_request.c (src\http):ngx_http_process_request_line(ngx_event_t *rev)
+---- ngx_http_core_listen Matches (3 in 1 files) ----
+Ngx_http_core_module.c (src\http):static char *ngx_http_core_listen(ngx_conf_t *cf, ngx_command_t *cmd,
+Ngx_http_core_module.c (src\http):      ngx_http_core_listen,
+Ngx_http_core_module.c (src\http):ngx_http_core_listen(ngx_conf_t *cf, ngx_command_t *cmd, void *conf)
